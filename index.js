@@ -30,6 +30,16 @@ async function getCovers(isbn){
     return result.config.url;
 }
 
+async function createBook(name, isbn, review, rating, date, description){
+    try {
+        await db.query("INSERT INTO books (name, coverurl, review, rating, date, description) VALUES ($1, $2, $3, $4, $5, $6);",
+            [name, isbn, review, rating, date, description]
+        );
+    } catch (error) {
+       console.log(error); 
+    }
+}
+
 app.get("/", async (req, res) => {
     const books = await getReviews();
     // console.log(books);
@@ -47,6 +57,21 @@ app.get("/", async (req, res) => {
         // covers: covers
     });
 });
+
+app.post("/add", async (req, res) => {
+    const name = req.body.name;
+    const isbn = req.body.isbn;
+    const review = req.body.review;
+    const rating = req.body.rating;
+    const date = req.body.date;
+    const description = req.body.description;
+
+    await createBook(name, isbn, review, rating, date, description);
+
+    res.json("success");
+
+    // res.redirect("/");
+})
 
 
 
