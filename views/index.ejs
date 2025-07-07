@@ -1,0 +1,36 @@
+<header>
+    <h1>Book Reviews</h1>
+</header>
+<div class="main-container">
+
+
+    <% if(locals.books) { %>
+        <% books.forEach(book => { %>
+            <div class="book">
+                <div class="left">
+                    <img src="<%= book.cover %>" alt="image of book cover" class="cover">
+                </div>
+                <div class="content">
+                    <div class="title">
+                        <h1><%= book.name %></h1>
+                    </div>
+                    <div class="date-and-rating">
+                        <div class="date">
+                            <p><%= book.date %></p>
+                        </div>
+                        <div class="rating">
+                            <p><%= book.rating %> /5</p>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p><%= book.description %></p>
+                    </div>
+                   
+                    <!-- <form>
+
+                    </form> -->
+                </div>
+            </div>
+        <% }); %>
+    <% } %>
+</div>

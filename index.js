@@ -26,7 +26,7 @@ async function getReviews(){
 }
 
 async function getCovers(isbn){
-    const result = await axios.get(API_URL + isbn + "-L.jpg");
+    const result = await axios.get(API_URL + isbn + "-M.jpg");
     return result.config.url;
 }
 
