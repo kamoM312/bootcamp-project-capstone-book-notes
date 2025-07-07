@@ -110,19 +110,19 @@ app.post("/update", async (req, res) => {
     // res.redirect("/");
 });
 
-app.post("/delete", async (req, res) => {
+app.get("/delete/:id", async (req, res) => {
     
-    // try {
-        const id = req.body.id;
+    try {
+        const id = req.params.id;
 
     await deleteBook(id);
    
-    res.json("success");
-    // } catch(error) {
-    //     res.json(404); }
-    // } finally {
-    //     res.redirect("/")
-    // }   
+   
+    } catch(error) {
+        console.log(error);
+    } finally {
+        res.redirect("/");
+    }   
 });
 
 

@@ -25,6 +25,12 @@
                     <div class="description">
                         <p><%= book.description %></p>
                     </div>
+
+                    <div>
+                        <a class="view" href="/view/<%= book.id %>">View</a>
+                        <a class="update" href="/edit/<%= book.id %>">Edit</a>
+                        <a class="delete" href="/delete/<%= book.id %>">Delete</a>
+                    </div>
                    
                     <!-- <form>
 
