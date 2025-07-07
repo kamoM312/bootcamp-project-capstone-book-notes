@@ -40,6 +40,16 @@ async function createBook(name, isbn, review, rating, date, description){
     }
 }
 
+async function updateBook(name, isbn, review, rating, date, description, id){
+    try {
+        await db.query("UPDATE books SET name = $1, coverurl = $2, review = $3, rating = $4, date = $5, description = $6 WHERE id = $7;",
+            [name, isbn, review, rating, date, description, id]
+        );
+    } catch (error) {
+       console.log(error); 
+    }
+}
+
 app.get("/", async (req, res) => {
     const books = await getReviews();
     // console.log(books);
@@ -71,7 +81,24 @@ app.post("/add", async (req, res) => {
     res.json("success");
 
     // res.redirect("/");
-})
+});
+
+// update 
+app.post("/update", async (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    const isbn = req.body.isbn;
+    const review = req.body.review;
+    const rating = req.body.rating;
+    const date = req.body.date;
+    const description = req.body.description;
+
+    await updateBook(name, isbn, review, rating, date, description, id);
+
+    res.json("success");
+
+    // res.redirect("/");
+});
 
 
 
