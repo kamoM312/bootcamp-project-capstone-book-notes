@@ -50,6 +50,16 @@ async function updateBook(name, isbn, review, rating, date, description, id){
     }
 }
 
+async function deleteBook(id){
+    try {
+        await db.query("DELETE FROM books WHERE id = $1;",
+            [id]
+        );
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 app.get("/", async (req, res) => {
     const books = await getReviews();
     // console.log(books);
@@ -100,7 +110,20 @@ app.post("/update", async (req, res) => {
     // res.redirect("/");
 });
 
+app.post("/delete", async (req, res) => {
+    
+    // try {
+        const id = req.body.id;
 
+    await deleteBook(id);
+   
+    res.json("success");
+    // } catch(error) {
+    //     res.json(404); }
+    // } finally {
+    //     res.redirect("/")
+    // }   
+});
 
 
 
