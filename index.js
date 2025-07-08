@@ -68,16 +68,6 @@ async function deleteBook(id){
     }
 }
 
-async function getDate(id){
-    try {
-        await db.query("SELECT date FROM books WHERE id = $1;",
-        [id]
-        );
-    } catch (error) {
-       console.log(error); 
-    }
-}
-
 app.get("/", async (req, res) => {
     const books = await getReviews();
     // console.log(books);
@@ -152,6 +142,15 @@ app.get("/edit/:id", async (req, res) => {
     // console.log(review[0])
     res.render("edit.ejs", { review: review[0] });
 });
+
+app.get("/view/:id", async (req, res) => {
+    const id = req.params.id;
+    const result = await getReview(id);
+    const book = result[0];
+    book.cover = await getCovers(book.coverurl);
+    book.date = moment(book.date).format('L').toString();
+    res.render("book.ejs", { book: book });
+})
 
 
 
