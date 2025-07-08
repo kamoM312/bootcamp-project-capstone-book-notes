@@ -39,9 +39,9 @@ body {
     justify-content: center;
 }
 
-/* .description {
-    text-align: center;
-} */
+.review p {
+    text-align: justify;
+}
 
 .content > div {
     text-align: center;
