@@ -64,3 +64,31 @@ header {
 h1 {
     font-size: 4rem;
 }
+
+div.flex-row.icons {
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+div.flex-row.edit {
+    justify-content: space-between;
+    width: 20%;
+}
+
+.view {
+    padding: 8px 12px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.view a {
+    text-decoration: none;
+}
+
+.view:hover {
+    background-color: #301934;
+    color: white;
+}

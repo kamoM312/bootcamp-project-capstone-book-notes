@@ -28,10 +28,12 @@
                         <p><%= book.description %></p>
                     </div>
 
-                    <div>
-                        <a class="view" href="/view/<%= book.id %>">View</a>
-                        <a class="update" href="/edit/<%= book.id %>"><div class="fas fa-edit"></div></a>
+                    <div class="flex-row icons">
+                        <a class="view" href="/view/<%= book.id %>">Read More</a>
+                        <div class="flex-row edit">
+                             <a class="update" href="/edit/<%= book.id %>"><div class="fas fa-edit"></div></a>
                         <a class="delete" href="/delete/<%= book.id %>"><div class="fas fa-trash"></div></a>
+                        </div>
                     </div>
                    
                     <!-- <form>
