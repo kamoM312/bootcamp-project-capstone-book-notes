@@ -68,6 +68,15 @@ async function deleteBook(id){
     }
 }
 
+function formatDate(date){
+    let dateStr = moment(date).format('L');
+    let arr = dateStr.split("/");
+    console.log(arr);
+    dateStr = `${arr[2]}-${arr[1]}-${arr[0]}`;
+    console.log(dateStr);
+    return dateStr;
+}
+
 app.get("/", async (req, res) => {
     const books = await getReviews();
     // console.log(books);
@@ -93,14 +102,14 @@ app.post("/add", async (req, res) => {
     const isbn = req.body.isbn;
     const review = req.body.review;
     const rating = req.body.rating;
-    const date = req.body.date;
+    const date = formatDate(req.body.date);
     const description = req.body.description;
 
     await createBook(name, isbn, review, rating, date, description);
 
-    res.json("success");
+    // res.json("success");
 
-    // res.redirect("/");
+    res.redirect("/");
 });
 
 // update 
@@ -150,6 +159,10 @@ app.get("/view/:id", async (req, res) => {
     book.cover = await getCovers(book.coverurl);
     book.date = moment(book.date).format('L').toString();
     res.render("book.ejs", { book: book });
+})
+
+app.get("/add", (req, res) => {
+    res.render("add.ejs");
 })
 
 
