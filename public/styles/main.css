@@ -37,6 +37,7 @@ body {
     gap: 12px;
     align-items: center;
     justify-content: center;
+    flex-basis: 90%;
 }
 
 .review p {
@@ -91,4 +92,26 @@ div.flex-row.edit {
 .view:hover {
     background-color: #301934;
     color: white;
+}
+
+/* edit form */
+form#myForm.flex-vert {
+    gap: 20px;
+    align-items: center;
+}
+
+form#myForm.flex-vert > * {
+    width: 60%;
+}
+
+label {
+    text-align: center;
+}
+
+input#rating {
+    margin-bottom: 20px;
+}
+
+input.submit {
+    width: 100px !important;
 }

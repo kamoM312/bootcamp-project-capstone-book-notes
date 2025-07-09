@@ -1,4 +1,11 @@
-<form id="myForm" action="/update" method="post">
+<%- include("partials/header.ejs") %>
+
+<header>
+    <h1>Book Reviews</h1>
+</header>
+<div class="main-container flex-vert">
+
+<form id="myForm" class="flex-vert" action="/update" method="post">
 
     <input type="hidden" name="id" value="<%= review.id %>">
 
@@ -12,14 +19,15 @@
     <input type="hidden" name="date" id="date" value="<%= review.date %>">
 
     <label for="description">Description: </label>
-    <input type="text" name="description" id="description" value="<%= review.description %>">
+     <textarea name="description" id="description" rows="4" cols="50"><%= review.description %></textarea>
 
     <label for="review">Review: </label>
-    <input type="text" name="review" id="review" value="<%= review.review %>">
+    <textarea name="review" id="review" rows="8" cols="50"><%= review.review %></textarea>
 
     <label for="rating">Rating: </label>
     <input type="text" name="rating" id="rating" value="<%= review.rating %>">
 
-    <input type="submit" value="submit">
+    <input type="submit" class="submit" value="submit">
 </form>
 
+</div>
