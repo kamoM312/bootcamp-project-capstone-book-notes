@@ -94,7 +94,32 @@ div.flex-row.edit {
     color: white;
 }
 
-/* edit form */
+div.add-form {
+    background: white;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create {
+    padding: 8px 12px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.create a {
+    text-decoration: none;
+}
+
+.create:hover {
+    background-color: #301934;
+    color: white;
+}
+
+/* forms */
 form#myForm.flex-vert {
     gap: 20px;
     align-items: center;
@@ -114,4 +139,5 @@ input#rating {
 
 input.submit {
     width: 100px !important;
+
 }
