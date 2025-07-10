@@ -10,6 +10,14 @@ body {
     background: black;
 }
 
+nav {
+    background: white;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -48,9 +56,17 @@ body {
     text-align: center;
 }
 
-.title h2 {
+h2 {
     font-size: 2.4rem;
 }
+
+h2.header {
+    text-align: center;
+}
+
+/* .title h2 {
+    font-size: 2.4rem;
+} */
 
 header {
     height: 150px;
@@ -120,6 +136,11 @@ div.add-form {
 }
 
 /* forms */
+#myForm {
+    border: solid;
+    padding: 40px;
+}
+
 form#myForm.flex-vert {
     gap: 20px;
     align-items: center;
@@ -141,3 +162,14 @@ input.submit {
     width: 100px !important;
 
 }
+
+
+#myForm > div {
+    justify-content: center;
+    gap: 30px;
+}
+
+/* form#myForm.flex-vert.sort {
+    border: solid;
+    padding: 40px;
+} */

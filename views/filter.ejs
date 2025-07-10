@@ -1,0 +1,32 @@
+<%- include("partials/header.ejs") %>
+
+<header>
+    <h1>Book Reviews</h1>
+</header>
+<div class="main-container flex-vert">
+<h2 class="header">Sort Results</h2>
+<form id="myForm" class="flex-vert sort" action="/sort" method="post">
+
+    <div class="flex-row">
+        <input type="radio" id="rating-asc" name="sort" value="rating-asc">
+    <label for="rating-asc">Rating: Lowest to highest</label><br>
+    </div>
+    
+    <div class="flex-row">
+        <input type="radio" id="rating-desc" name="sort" value="rating-desc">
+    <label for="rating-asc">Rating: Highest to lowest</label><br>
+    </div>
+
+    <div class="flex-row">
+        <input type="radio" id="recency-asc" name="sort" value="recency-asc">
+    <label for="rating-asc">Recency: Newest to oldest</label><br>
+    </div>
+
+    <div class="flex-row">
+      <input type="radio" id="rating-desc" name="sort" value="recency-desc">
+    <label for="recency-desc">Recency: Oldest to newest</label><br>   
+    </div>
+    
+     <input type="submit" class="submit" value="submit">
+</form>
+</div>

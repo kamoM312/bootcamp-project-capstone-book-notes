@@ -33,6 +33,26 @@ async function getReview(id){
     return result.rows;
 }
 
+async function getRatAsc(){
+    const result = await db.query("SELECT * FROM books ORDER BY Rating ASC;");
+    return result.rows;
+}
+
+async function getRatDesc(){
+    const result = await db.query("SELECT * FROM books ORDER BY Rating DESC;");
+    return result.rows;
+}
+
+async function getRecAsc(){
+    const result = await db.query("SELECT * FROM books ORDER BY Date ASC;");
+    return result.rows;
+}
+
+async function getRecDesc(){
+    const result = await db.query("SELECT * FROM books ORDER BY Date DESC;");
+    return result.rows;
+}
+
 async function getCovers(isbn){
     const result = await axios.get(API_URL + isbn + "-M.jpg");
     return result.config.url;
@@ -159,36 +179,58 @@ app.get("/view/:id", async (req, res) => {
     book.cover = await getCovers(book.coverurl);
     book.date = moment(book.date).format('L').toString();
     res.render("book.ejs", { book: book });
-})
+});
 
 app.get("/add", (req, res) => {
     res.render("add.ejs");
-})
+});
 
+app.get("/form/sort", (req, res) => {
+    res.render("filter.ejs");
+});
 
+app.post("/sort", async (req, res) => {
+    const sort = req.body.sort;
+    const arr = sort.split("-");
 
+    const sortMethod = arr[0];
+    const sortOrder = arr[1];
 
+    console.log(sortMethod);
+    console.log(sortOrder);
 
+    let books = [];
 
+    if((sortMethod === "rating") && (sortOrder === "asc")){
+         books = await getRatAsc();                                                                                       
+    }
 
+    if((sortMethod === "rating") && (sortOrder === "desc")){
+         books = await getRatDesc();                                                                                       
+    }
 
+    if((sortMethod === "recency") && (sortOrder === "asc")){
+        books = await getRecAsc();                                                                                   
+    }
 
+    if((sortMethod === "recency") && (sortOrder === "desc")){
+        books = await getRecDesc();                                                                                      
+    }
+    
 
+    for(const book of books){
+        // covers.push(await getCovers(book.coverurl));
+        book.cover = await getCovers(book.coverurl);
+        book.date = moment(book.date).format('L').toString();
+        // console.log(book.date);
+    }
+    // console.log(books);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    res.render("index.ejs", {
+        books: books,
+        // covers: covers
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Connected on port: ${PORT}`);
